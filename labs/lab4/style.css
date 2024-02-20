@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.container {
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: justify;
+}
+
+.buttons button {
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.buttons button:first-child {
+  background-color: green;
+}
+
+.buttons button:last-child {
+  background-color: red;
+}
+
+.buttons button:hover {
+  opacity: 0.8;
+}
+
+.buttons button:active {
+  opacity: 0.9;
+}
+
+.list {
+    max-width: 500px;
+    width: 100%;
+}
+
+.class1 {
+  background-color: burlywood;
+}
+
+.class2 {
+  background-color: cadetblue;
+}
+
+.repaint > li:nth-child(even) {
+  font-weight: bolder;
+}
