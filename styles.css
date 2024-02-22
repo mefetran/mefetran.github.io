@@ -88,6 +88,12 @@ aside {
     padding: 10px;
 }
 
+@media (max-width: 600px) {
+    aside {
+        width: 100%;
+    }
+}
+
 aside > #news {
     display: flex;
     flex-direction: column;
