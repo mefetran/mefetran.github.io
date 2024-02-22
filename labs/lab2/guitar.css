@@ -3,8 +3,8 @@ body {
 }
 
 #content {
-    width: 350px;
-    height: 280px;
+    width: 375px;
+    height: 300px;
     display: block;
     overflow: auto;
     position: relative;
@@ -14,12 +14,12 @@ body {
 
 #big-circle {
     position: absolute;
-    width: 130px;
-    height: 130px;
+    width: 37%;
+    height: 46.5%;
     border-radius: 50%;
     background-color: #f6d758;
-    top: 110px;
-    left: 55px;
+    top: 39.3%;
+    left: 15.7%;
     overflow: hidden;
     z-index: 0;
 }
@@ -31,65 +31,65 @@ body {
 
 #big-circle-shadow {
     position: absolute;
-    width: 130px;
-    height: 130px;
+    width: 37%;
+    height: 46.5%;
     border-radius: 50%;
-    top: 105px;
-    left: 50px;
+    top: 37.5%;
+    left: 14.3%;
     z-index: -5;
 }
 
 #small-circle {
     position: absolute;
-    width: 105px;
-    height: 105px;
+    width: 30%;
+    height: 37.5%;
     border-radius: 50%;
     background-color: #f6d758;
-    top: 80px;
-    left: 120px;
+    top: 28.57%;
+    left: 34.3%;
     z-index: 0;
 }
 
 #small-circle-shadow {
     position: absolute;
-    width: 105px;
-    height: 105px;
+    width: 30%;
+    height: 37.5%;
     border-radius: 50%;
-    top: 75px;
-    left: 115px;
+    top: 26.8%;
+    left: 32.85%;
     z-index: -5;
 }
 
 #smallest-circle {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 11.43%;
+    height: 14.23%;
     border-radius: 50%;
     border: 4px solid #4b2f03;
     background-color: #a96803;
-    top: 102px;
-    left: 155px;
+    top: 36.43%;
+    left: 44.3%;
     z-index: 1;
 }
 
 #bridge {
     position: absolute;
-    width: 25px;
-    top: 189px;
-    left: 89px;
+    width: 7.14%;
+    top: 67.5%;
+    left: 25.43%;
+    height: 1.86%;
     background-color: #8c5705;
-    border: 3px solid #8c5705;
     rotate: -130deg;
     z-index: 3;
 }
 
 #finger {
     background: #870e01;
-    width: 45px;
-    height: 36px;
+    width: 12.86%;
+    height: 12.86%;
     position: absolute;
-    top: 25px;
-    left: 259px;
+    top: 8.93%;
+    left: 74%;
     rotate: -40deg;
     border-radius: 18%;
     z-index: 1;
@@ -98,11 +98,11 @@ body {
 #finger-shadow {
     background: rgb(145,145,145);
     background: linear-gradient(0deg, rgba(145,145,145,1) 95%, rgba(221,221,221,1) 100%); 
-    width: 45px;
-    height: 36px;
+    width: 12.86%;
+    height: 12.86%;
     position: absolute;
-    top: 20px;
-    left: 254px;
+    top: 7.14%;
+    left: 72.6%;
     rotate: -40deg;
     border-radius: 18%;
     z-index: -5;
@@ -114,8 +114,8 @@ body {
 .botrightconcave {
     position: absolute;
     background: white;
-    width: 6px;
-    height: 6px;
+    width: 13.3%;
+    height: 16.6%;
     border-radius: 50%;
 }
 
@@ -142,8 +142,8 @@ body {
 .topleftconcave-shadow, .toprightconcave-shadow {
     position: absolute;
     background: white;
-    width: 6px;
-    height: 6px;
+    width: 13.3%;
+    height: 16.6%;
     border-radius: 50%;
 }
 
@@ -154,21 +154,21 @@ body {
 
 #rectangle {
     position: absolute;
-    width: 80px;
-    height: 25px;
+    width: 22.86%;
+    height: 8.93%;
     background-color: #f6d758;
-    top: 70px;
-    left: 193px;
+    top: 25%;
+    left: 55.14%;
     rotate: -40deg;
     z-index: 0;
 }
 
 #rectangle-shadow {
     position: absolute;
-    width: 80px;
-    height: 25px;
-    top: 63px;
-    left: 190px;
+    width: 22.86%;
+    height: 8.93%;
+    top: 22.5%;
+    left: 54.3%;
     rotate: -40deg;
     background: rgb(145,145,145);
     background: linear-gradient(0deg, rgba(145,145,145,1) 95%, rgba(221,221,221,1) 100%); 
@@ -178,30 +178,30 @@ body {
 .yellow-circle {
     position: absolute;
     background-color: #f8db5a;
-    width: 7px;
-    height: 7px;
+    width: 2%;
+    height: 2.5%;
     border-radius: 50%;
     z-index: 3;
 }
 
 #yellow-circle1 {
-    top: 42px;
-    left: 261px;
+    top: 15%;
+    left: 74.56%;
 }
 
 #yellow-circle2 {
-    top: 43px;
-    left: 283px;
+    top: 15.36%;
+    left: 80.86%;
 }
 
 #yellow-circle3 {
-    top: 37px;
-    left: 276px;
+    top: 13.21%;
+    left: 78.86%;
 }
 
 #yellow-circle4 {
-    top: 47px;
-    left: 271px;
+    top: 16.78%;
+    left: 77.43%;
 }
 
 .string {
@@ -213,33 +213,33 @@ body {
 }
 
 #string1 {
-    width: 210px;
-    top: 116px;
-    left: 75px;
+    width: 60%;
+    top: 41.43%;
+    left: 21.43%;
 }
 
 #string2 {
-    width: 225px;
-    top: 115px;
-    left: 77px;
+    width: 64.28%;
+    top: 41.07%;
+    left: 22%;
 }
 
 #string3 {
-    width: 215px;
-    top: 121px;
-    left: 83px;
+    width: 61.43%;
+    top: 43.21%;
+    left: 23.71%;
 }
 
 #string4 {
-    width: 225px;
-    top: 122px;
-    left: 84px;
+    width: 64.28%;
+    top: 43.57%;
+    left: 24%;
 }
 
 .triangle {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 8.57%;
+    height: 10.71%;
     background: rgb(255,0,0);
     background: linear-gradient(0deg, rgba(255,0,0,1) 30%, rgba(255,86,86,1) 49%, rgba(255,255,255,1) 86%);
     clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
@@ -247,23 +247,23 @@ body {
 }
 
 #triangle1 {
-    top: 173px;
-    left: 70px;
+    top: 61.78%;
+    left: 20%;
     rotate: 140deg;
 }
 
 #triangle2 {
-    top: 196px;
-    left: 90px;
+    top: 70%;
+    left: 25.71%;
     rotate: -40deg;
 }
 
 #gradient {
     position: absolute;
-    width: 120px;
-    height: 120px;
-    top: 85px;
-    left: 25px;
+    width: 92.3%;
+    height: 92.3%;
+    top: 69.64%;
+    left: 22.86%;
     z-index: 6;
     border-radius: 50%;
 
