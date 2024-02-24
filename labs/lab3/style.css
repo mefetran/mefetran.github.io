@@ -19,8 +19,8 @@ body {
   display: flex;
   padding: 10px;
   align-items: center;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .wrapper {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <div id="welcome">
+            <h1>Вас приветствует игра "Собери пирамиду"</h1>
+            <button id="start" onclick="game()">Начать игру</button>
+            <p>Нажмите на кнопку "Начать игру"</p>
+        </div>
+        <div id="chooseDifficulty">
+            <h1>Выберите сложность</h1>
+            <button id="easy">Легкая</button>
+            <button id="medium">Средняя</button>
+            <button id="hard">Сложная</button>
+            <p>Выберите сложность и посмотрите как выглядит игра</p>
+        </div>
+        <div id="gameover">
+            <h1>Игра окончена</h1>
+            <button id="restart">Начать заново</button>
+            <p></p>
+        </div>
+        <h1 class="title">Игра "Собери пирамиду"</h1>
+        <div id="content">
+            <div id="game">
+                <div id="pyramid">
+                    <div id="surface"></div>
+                    <div id="stick"></div>
+                    <div id="ringBig"></div>
+                </div>
+                <div id="wall"></div>
+                <div id="window">
+                </div>
+            </div>
+            <div id="stats">
+                <div id="difficulty">Сложность: легкая</div>
+                <div id="score">Очки: 0</div>
+                <div id="clics">Клики: 0</div>
+                <div id="time">Текущее время: </div>
+            </div>
+        </div>
+        <script src="game.js"></script>
+    </div>
+</body>
+
+</html>

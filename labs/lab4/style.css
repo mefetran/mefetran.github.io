@@ -71,3 +71,7 @@ body {
 .repaint > li:nth-child(even) {
   font-weight: bolder;
 }
+
+.repaint > li:nth-child(odd) {
+  background-color: red;
+}
