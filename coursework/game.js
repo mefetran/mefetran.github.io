@@ -1,11 +1,13 @@
 function game() {
-    const welcome = document.getElementById('welcome');
-    welcome.style.display = 'none';
-    const chooseDifficulty = document.getElementById('chooseDifficulty');
-    chooseDifficulty.style.display = 'flex';
-    const easyButton = document.getElementById('easy');
-    const mediumButton = document.getElementById('medium');
-    const hardButton = document.getElementById('hard');
+    // const welcome = document.getElementById('welcome');
+    // welcome.style.display = 'none';
+    // const chooseDifficulty = document.getElementById('chooseDifficulty');
+    // chooseDifficulty.style.display = 'flex';
+    // const easyButton = document.getElementById('easy');
+    // const mediumButton = document.getElementById('medium');
+    // const hardButton = document.getElementById('hard');
+    const difficulty = localStorage.getItem('difficulty') || 'easy';
+
     const restart = document.getElementById('restart');
     const gameover = document.getElementById('gameover');
     const windowBlock = document.getElementById('window');
@@ -34,11 +36,6 @@ function game() {
         5: 'rect-six',
     })
 
-    const randomClass = () => {
-        const keys = Object.keys(ringClasses);
-        const randomKey = keys[Math.floor(Math.random() * keys.length)];
-        return ringClasses[randomKey];
-    }
 
     const newRing = (className) => {
         let ring = document.createElement('div');
@@ -63,16 +60,22 @@ function game() {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    // setInterval(() => {
-    //     newRing();
-    // }, 1000)
 
-    // setTimeout(() => {
-    //     newRing();
-    // }, i * 1000);
-    // clearTimeout();
-
-    const easy = () => {
+    switch (difficulty) {
+        case 'easy':
+            easy();
+            break;
+        case 'medium':
+            medium();
+            break;
+        case 'hard':
+            hard();
+            break;
+        default:
+            easy();
+            break;
+    }
+    function easy() {
         document.getElementById('difficulty').innerText = 'Сложность: легкая';
         const rings = [];
         for (let i = 0; i < 6; i++) {
@@ -116,7 +119,7 @@ function game() {
         }, 10)
     }
 
-    const medium = () => {
+    function medium() {
         document.getElementById('difficulty').innerText = 'Сложность: средняя';
         const rings = [];
         const rectangles = [];
@@ -133,7 +136,7 @@ function game() {
                 moveRing(removedRings[i]);
             }
             removedRings.length = 0;
-            order = 0;
+            order = rings.length - 1;
             clics++;
             if (score > 0) {
                 score -= 15;
@@ -144,7 +147,6 @@ function game() {
             rings.push(newRing(ringClasses[i]));
         }
         let order = rings.length - 1;
-        let game = true;
         for (let i = 0; i < rings.length; i++) {
             rings[i].addEventListener('click', () => {
                 removedRings.push(rings[i]);
@@ -187,7 +189,7 @@ function game() {
         }, 10)
     }
 
-    const hard = () => {
+    function hard() {
         document.getElementById('difficulty').innerText = 'Сложность: сложная';
         const rings = [];
         const rectangles = [];
@@ -204,7 +206,7 @@ function game() {
                 moveRing(removedRings[i]);
             }
             removedRings.length = 0;
-            order = 0;
+            order = rings.length - 1;
             clics++;
             if (score > 0) {
                 score -= 15;
@@ -275,23 +277,12 @@ function game() {
         }, 10)
     }
 
-    easyButton.addEventListener('click', () => {
-        chooseDifficulty.style.display = 'none';
-        easy();
-    })
-
-    mediumButton.addEventListener('click', () => {
-        chooseDifficulty.style.display = 'none';
-        medium();
-    })
-
-    hardButton.addEventListener('click', () => {
-        chooseDifficulty.style.display = 'none';
-        hard();
-    })
-
     restart.addEventListener('click', () => {
         location.reload();
     })
 
+}
+
+window.onload = () => {
+    game();
 }
