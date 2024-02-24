@@ -264,7 +264,7 @@ body {
     height: 2em;
     border-radius: 50%;
     border: .6em solid red;
-    background-color: white;
+    background-color: transparent;
     position: absolute;
     top: -4em;
     left: calc(random() * 50vw);
@@ -276,7 +276,7 @@ body {
     height: 3em;
     border-radius: 50%;
     border: 1em solid yellow;
-    background-color: white;
+    background-color: transparent;
     position: absolute;
     top: -6em;
     left: calc(random() * 50vw);
@@ -288,7 +288,7 @@ body {
     height: 4em;
     border-radius: 50%;
     border: 1.5em solid green;
-    background-color: white;
+    background-color: transparent;
     position: absolute;
     top: -8em;
     left: calc(random() * 50vw);
@@ -300,7 +300,7 @@ body {
     height: 5em;
     border-radius: 50%;
     border: 2em solid blue;
-    background-color: white;
+    background-color: transparent;
     position: absolute;
     top: -10em;
     left: calc(random() * 50vw);
@@ -312,7 +312,7 @@ body {
     height: 6em;
     border-radius: 50%;
     border: 2.5em solid purple;
-    background-color: white;
+    background-color: transparent;
     position: absolute;
     top: -12em;
     left: calc(random() * 50vw);
@@ -324,7 +324,7 @@ body {
     height: 7em;
     border-radius: 50%;
     border: 3em solid teal;
-    background-color: white;
+    background-color: transparent;
     position: absolute;
     top: -14em;
     left: calc(random() * 50vw);
