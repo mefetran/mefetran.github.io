@@ -128,6 +128,11 @@ function game() {
             }
             removedRings.length = 0;
             order = 0;
+            clics++;
+            if (score > 0) {
+                score -= 15;
+                scoresBlock.innerText = `Очки: ${score}`;
+            }
         })
         for (let i = 0; i < 6; i++) {
             rings.push(newRing(ringClasses[i]));
