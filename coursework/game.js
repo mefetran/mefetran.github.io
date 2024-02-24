@@ -3,9 +3,13 @@ function game() {
     welcome.style.display = 'none';
     const chooseDifficulty = document.getElementById('chooseDifficulty');
     chooseDifficulty.style.display = 'flex';
+    const easyButton = document.getElementById('easy');
+    const mediumButton = document.getElementById('medium');
+    const restart = document.getElementById('restart');
     const gameover = document.getElementById('gameover');
     const windowBlock = document.getElementById('window');
     const pyramidBlock = document.getElementById('pyramid');
+    const returnButton = document.getElementById('return');
     const clicsBlock = document.getElementById('clics');
     const scoresBlock = document.getElementById('score');
     let clics = 0;
@@ -106,14 +110,85 @@ function game() {
         }, 10)
     }
 
-    const easyButton = document.getElementById('easy');
+    const medium = () => {
+        document.getElementById('difficulty').innerText = 'Сложность: средняя';
+        const rings = [];
+        const rectangles = [];
+        const removedRings = [];
+        returnButton.style.display = 'flex';
+        returnButton.addEventListener('click', () => {
+            for (let i = 0; i < rectangles.length; i++) {
+                pyramidBlock.removeChild(rectangles[i]);
+            }
+            rectangles.length = 0;
+            for (let i = 0; i < removedRings.length; i++) {
+                windowBlock.appendChild(removedRings[i]);
+                removedRings[i].style.display = 'block';
+                moveRing(removedRings[i]);
+            }
+            removedRings.length = 0;
+            order = 0;
+        })
+        for (let i = 0; i < 6; i++) {
+            rings.push(newRing(ringClasses[i]));
+        }
+        let order = rings.length - 1;
+        let game = true;
+        for (let i = 0; i < rings.length; i++) {
+            rings[i].addEventListener('click', () => {
+                removedRings.push(rings[i]);
+                rings[i].style.display = 'none';
+                let rectangle = document.createElement('div');
+                rectangle.classList.add(rectClasses[i]);
+                pyramidBlock.appendChild(rectangle);
+                rectangles.push(rectangle);
+                if (ringClasses[order] === rings[i].classList[0]) {
+                    score += 15;
+                    scoresBlock.innerText = `Очки: ${score}`;
+                    clics++;
+                    clicsBlock.innerText = `Клики: ${clics}`;
+                    order--;
+                } else {
+                    if (score > 0) {
+                        score -= 15;
+                        scoresBlock.innerText = `Очки: ${score}`;
+                    }
+                    clics++;
+                    clicsBlock.innerText = `Клики: ${clics}`;
+                }
+            })
+        }
+
+        setInterval(() => {
+            if (game) {
+                if (order === -1) {
+                    game = false;
+                    gameover.style.display = 'flex';
+                    gameover.getElementsByTagName('p')[0].innerText = `Вы набрали ${score} очков за ${clics} кликов.`
+                }
+                if (order !== -1 && rectangles.length === 6) {
+                    game = false;
+                    gameover.style.display = 'flex';
+                    gameover.getElementsByTagName('h1')[0].innerText = 'Вы проиграли!';
+                    gameover.getElementsByTagName('p')[0].innerText = `Вы набрали ${score} очков за ${clics} кликов.`
+                }
+            }
+        }, 10)
+    }
+
+
     easyButton.addEventListener('click', () => {
         chooseDifficulty.style.display = 'none';
         easy();
     })
 
-    const restart = document.getElementById('restart');
+    mediumButton.addEventListener('click', () => {
+        chooseDifficulty.style.display = 'none';
+        medium();
+    })
+
     restart.addEventListener('click', () => {
         location.reload();
     })
+
 }
