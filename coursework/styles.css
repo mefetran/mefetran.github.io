@@ -26,16 +26,26 @@ body {
     clear: both;
 }
 
-a {
+.links {
     text-decoration: none;
     color: orange;
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    z-index: 100;
+}
+
+#back {
     position: absolute;
     top: 5vh;
     left: 5vw;
-    z-index: 100;
+}
+
+#again {
+    position: absolute;
+    position: absolute;
+    top: 5vh;
+    right: 5vw;
 }
 
 #welcome {
