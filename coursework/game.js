@@ -5,8 +5,10 @@ function game() {
     const windowBlock = document.getElementById('window');
     const pyramidBlock = document.getElementById('pyramid');
     const returnButton = document.getElementById('return');
+    const changeColorButton = document.getElementById('changeColor');
     const clicsBlock = document.getElementById('clics');
     const scoresBlock = document.getElementById('score');
+    const stick = document.getElementById('stick');
     const timerBlock = document.getElementById('timer');
     let seconds = 0;
     let minutes = 0;
@@ -40,6 +42,10 @@ function game() {
         3: 'ring-four',
         4: 'ring-five',
         5: 'ring-six',
+        6: 'ring-seven',
+        7: 'ring-eight',
+        8: 'ring-nine',
+        9: 'ring-ten',
     });
 
     const rectClasses = Object.freeze({
@@ -49,7 +55,25 @@ function game() {
         3: 'rect-four',
         4: 'rect-five',
         5: 'rect-six',
+        6: 'rect-seven',
+        7: 'rect-eight',
+        8: 'rect-nine',
+        9: 'rect-ten',
     })
+
+    const colors = [
+        'rgb(165, 87, 42)',
+        'rgb(0, 0, 255)',
+        'rgb(128, 0, 128)',
+        'rgb(165, 42, 42)',
+        'rgb(255, 0, 0)',
+        'rgb(255, 255, 0)',
+        'rgb(255, 165, 0)',
+        'rgb(255, 192, 203)',
+        'rgb(0, 255, 255)',
+        'rgb(0, 0, 0)',
+        'rgb(128, 128, 128)',
+        'rgb(0, 128, 128)'];
 
     const gameoverEndings = Object.freeze({
         'won': 'gameWon',
@@ -109,6 +133,35 @@ function game() {
         location.href = 'gameover.html';
     }
 
+    function changeColor(rings, rectangles) {
+        for (let i = colors.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [colors[i], colors[j]] = [colors[j], colors[i]];
+        }
+        rings.forEach((element, index) => {
+            element.style.borderColor = colors[index % colors.length];
+        });
+        rectangles.forEach((element, index) => {
+            element.style.backgroundColor = colors[index % colors.length];
+        })
+    }
+
+    function changeColor(rings, rectangles, removedRings) {
+        for (let i = colors.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [colors[i], colors[j]] = [colors[j], colors[i]];
+        }
+        rings.forEach((element, index) => {
+            element.style.borderColor = colors[index % colors.length];
+        });
+        rectangles.forEach((element, index) => {
+            element.style.backgroundColor = colors[index % colors.length];
+        })
+        removedRings.forEach((element, index) => {
+            element.style.borderColor = colors[index % colors.length];
+        })
+    }
+
     switch (difficulty) {
         case 'easy':
             easy();
@@ -127,9 +180,12 @@ function game() {
         document.getElementById('difficulty').innerText = 'Сложность: легкая';
         const rings = [];
         const rectangles = [];
-        for (let i = 0; i < 6; i++) {
+        const removedRings = [];
+        for (let i = 0; i < getRandomInt(4, 10); i++) {
             rings.push(newRing(ringClasses[i]));
         }
+        changeColor(rings, rectangles, removedRings);
+        stick.style.height = (rings.length * 4.16) + '%';
         let order = rings.length - 1;
         let game = true;
         for (let i = 0; i < rings.length; i++) {
@@ -143,6 +199,7 @@ function game() {
                     rings[i].remove();
                     let rectangle = document.createElement('div');
                     rectangle.classList.add(rectClasses[i]);
+                    rectangle.style.backgroundColor = rings[i].style.borderColor;
                     pyramidBlock.appendChild(rectangle);
                     rectangles.push(rectangle);
                 } else {
@@ -154,6 +211,10 @@ function game() {
                 }
             })
         }
+
+        changeColorButton.addEventListener('click', () => {
+            changeColor(rings, rectangles, removedRings);
+        })
 
         let gameProcess = setInterval(() => {
             if (game) {
@@ -195,9 +256,14 @@ function game() {
                 scoresBlock.innerText = `Очки: ${score}`;
             }
         })
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < getRandomInt(6, 10); i++) {
             rings.push(newRing(ringClasses[i]));
         }
+        changeColor(rings, rectangles, removedRings);
+        stick.style.height = (rings.length * 4.16) + '%';
+        changeColorButton.addEventListener('click', () => {
+            changeColor(rings, rectangles, removedRings);
+        })
         let order = rings.length - 1;
         for (let i = 0; i < rings.length; i++) {
             rings[i].addEventListener('click', () => {
@@ -205,6 +271,7 @@ function game() {
                 rings[i].style.display = 'none';
                 let rectangle = document.createElement('div');
                 rectangle.classList.add(rectClasses[i]);
+                rectangle.style.backgroundColor = rings[i].style.borderColor;
                 pyramidBlock.appendChild(rectangle);
                 rectangles.push(rectangle);
                 if (ringClasses[order] === rings[i].classList[0]) {
@@ -234,7 +301,7 @@ function game() {
                     hard();
                     clearInterval(gameProcess);
                 }
-                if (order !== -1 && rectangles.length === 6) {
+                if (order !== -1 && rectangles.length === rings.length) {
                     game = false;
                     gameover(gameoverEndings.lose);
                     clearInterval(gameProcess);
@@ -268,9 +335,14 @@ function game() {
                 scoresBlock.innerText = `Очки: ${score}`;
             }
         })
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < getRandomInt(7, 10); i++) {
             rings.push(newRing(ringClasses[i]));
         }
+        changeColor(rings, rectangles, removedRings);
+        stick.style.height = (rings.length * 4.16) + '%';
+        changeColorButton.addEventListener('click', () => {
+            changeColor(rings, rectangles, removedRings);
+        })
         let order = rings.length - 1;
         let game = true;
         for (let i = 0; i < rings.length; i++) {
@@ -279,6 +351,7 @@ function game() {
                 rings[i].style.display = 'none';
                 let rectangle = document.createElement('div');
                 rectangle.classList.add(rectClasses[i]);
+                rectangle.style.backgroundColor = rings[i].style.borderColor;
                 pyramidBlock.appendChild(rectangle);
                 rectangles.push(rectangle);
                 if (ringClasses[order] === rings[i].classList[0]) {
@@ -324,7 +397,7 @@ function game() {
                     clearInterval(appear);
                     clearInterval(gameProcess);
                 }
-                if (order !== -1 && rectangles.length === 6) {
+                if (order !== -1 && rectangles.length === rings.length) {
                     game = false;
                     gameover(gameoverEndings.lose);
                     clearInterval(disappear);

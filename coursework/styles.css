@@ -196,6 +196,15 @@ body {
 
 }
 
+#changeColor {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
 #game {
     width: 100%;
     height: 100%;
@@ -268,65 +277,113 @@ body {
     position: absolute;
     top: -4em;
     left: calc(random() * 50vw);
-    z-index: 6;
+    z-index: 10;
 }
 
 .ring-two {
-    width: 3em;
-    height: 3em;
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 50%;
-    border: 1em solid yellow;
+    border: 0.8em solid yellow;
     background-color: transparent;
     position: absolute;
     top: -6em;
     left: calc(random() * 50vw);
-    z-index: 5;
+    z-index: 9;
 }
 
 .ring-three {
-    width: 4em;
-    height: 4em;
+    width: 3em;
+    height: 3em;
     border-radius: 50%;
-    border: 1.5em solid green;
+    border: 1em solid green;
     background-color: transparent;
     position: absolute;
     top: -8em;
     left: calc(random() * 50vw);
-    z-index: 4;
+    z-index: 8;
 }
 
 .ring-four {
-    width: 5em;
-    height: 5em;
+    width: 3.5em;
+    height: 3.5em;
     border-radius: 50%;
-    border: 2em solid blue;
+    border: 1.3em solid blue;
     background-color: transparent;
     position: absolute;
     top: -10em;
     left: calc(random() * 50vw);
-    z-index: 3;
+    z-index: 7;
 }
 
 .ring-five {
-    width: 6em;
-    height: 6em;
+    width: 4em;
+    height: 4em;
     border-radius: 50%;
-    border: 2.5em solid purple;
+    border: 1.5em solid purple;
     background-color: transparent;
     position: absolute;
     top: -12em;
     left: calc(random() * 50vw);
-    z-index: 2;
+    z-index: 6;
 }
 
 .ring-six {
-    width: 7em;
-    height: 7em;
+    width: 4.5em;
+    height: 4.5em;
     border-radius: 50%;
-    border: 3em solid teal;
+    border: 1.7em solid teal;
     background-color: transparent;
     position: absolute;
     top: -14em;
+    left: calc(random() * 50vw);
+    z-index: 5;
+}
+
+.ring-seven {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    border: 2em solid orange;
+    background-color: transparent;
+    position: absolute;
+    top: -16em;
+    left: calc(random() * 50vw);
+    z-index: 4;
+}
+
+.ring-eight {
+    width: 5.5em;
+    height: 5.5em;
+    border-radius: 50%;
+    border: 2.2em solid pink;
+    background-color: transparent;
+    position: absolute;
+    top: -18em;
+    left: calc(random() * 50vw);
+    z-index: 3;
+}
+
+.ring-nine {
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    border: 2.5em solid brown;
+    background-color: transparent;
+    position: absolute;
+    top: -20em;
+    left: calc(random() * 50vw);
+    z-index: 2;
+}
+
+.ring-ten {
+    width: 6.5em;
+    height: 6.5em;
+    border-radius: 50%;
+    border: 2.7em solid gray;
+    background-color: transparent;
+    position: absolute;
+    top: -22em;
     left: calc(random() * 50vw);
     z-index: 1;
 }
@@ -339,37 +396,65 @@ body {
 }
 
 .rect-two {
-    width: 20%;
+    width: 15%;
     height: 3%;
     background-color: yellow;
     z-index: 2;
 }
 
 .rect-three {
-    width: 30%;
+    width: 20%;
     height: 3%;
     background-color: green;
     z-index: 2;
 }
 
 .rect-four {
-    width: 40%;
+    width: 25%;
     height: 3%;
     background-color: blue;
     z-index: 2;
 }
 
 .rect-five {
-    width: 50%;
+    width: 30%;
     height: 3%;
     background-color: purple;
     z-index: 2;
 }
 
 .rect-six {
-    width: 60%;
+    width: 35%;
     height: 3%;
     background-color: teal;
+    z-index: 2;
+}
+
+.rect-seven {
+    width: 40%;
+    height: 3%;
+    background-color: orange;
+    z-index: 2;
+}
+
+.rect-eight {
+    width: 45%;
+    height: 3%;
+    background-color: pink;
+    z-index: 2;
+}
+
+.rect-nine {
+    width: 50%;
+    height: 3%;
+    background-color: brown;
+    z-index: 2;
+}
+
+.rect-ten {
+    width: 55%;
+    height: 3%;
+    background-color: gray;
     z-index: 2;
 }
 
