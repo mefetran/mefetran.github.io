@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
+    <a id="back" class="links" href="../index.html">На главную</a>
+    <a id="again" class="links" href="index.html">Заново</a>
     <div id="gameover">
         <h1>Вы выиграли!</h1>
-        <button id="restart">Начать заново</button>
+        <button id="restartButton">Начать заново</button>
+        <button id="leadersButton">Лидеры</button>
         <p></p>
     </div>
+    <div id="leaders">
+        <button id="resetLeadersButton">Сбросить лидеров</button>
+        <h1>Лидеры</h1>
+        <ol></ol>
+    </div>
+    <script src="gameover.js"></script>
 </body>
 
 </html>

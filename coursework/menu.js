@@ -18,4 +18,12 @@ function menu() {
     mediumButton.addEventListener('click', () => clickHandler('medium'));
 
     hardButton.addEventListener('click', () => clickHandler('hard'));
+
+    let name = prompt("Введите свое имя (пустая строка или отмена = Гость):");
+    if (name === null || name === "") {
+        name = 'Гость';
+    } else if (name.length > 10) {
+        name = name.slice(0, 10);
+    }
+    localStorage.setItem('name', name);
 }

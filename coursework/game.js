@@ -1,22 +1,37 @@
 function game() {
-    // const welcome = document.getElementById('welcome');
-    // welcome.style.display = 'none';
-    // const chooseDifficulty = document.getElementById('chooseDifficulty');
-    // chooseDifficulty.style.display = 'flex';
-    // const easyButton = document.getElementById('easy');
-    // const mediumButton = document.getElementById('medium');
-    // const hardButton = document.getElementById('hard');
     const difficulty = localStorage.getItem('difficulty') || 'easy';
-
-    const restart = document.getElementById('restart');
-    const gameover = document.getElementById('gameover');
+    const name = localStorage.getItem('name');
+    const nameBlock = document.getElementById('name');
     const windowBlock = document.getElementById('window');
     const pyramidBlock = document.getElementById('pyramid');
     const returnButton = document.getElementById('return');
     const clicsBlock = document.getElementById('clics');
     const scoresBlock = document.getElementById('score');
+    const timerBlock = document.getElementById('timer');
+    let seconds = 0;
+    let minutes = 0;
+
+    function startTimer() {
+        setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+        }
+        timerBlock.innerHTML = `Текущее время: ${formatTime(minutes)}:${formatTime(seconds)}`;
+    }
+
+    function formatTime(time) {
+        return time < 10 ? `0${time}` : time;
+    }
+
     let clics = 0;
     let score = 0;
+    let difficultyCoefficient = 1;
+    nameBlock.innerText = 'Игрок: ' + name;
 
     const ringClasses = Object.freeze({
         0: 'ring-one',
@@ -36,6 +51,10 @@ function game() {
         5: 'rect-six',
     })
 
+    const gameoverEndings = Object.freeze({
+        'won': 'gameWon',
+        'lose': 'gameLose',
+    })
 
     const newRing = (className) => {
         let ring = document.createElement('div');
@@ -61,6 +80,35 @@ function game() {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    function gameover(ending) {
+        localStorage.setItem('ending', ending);
+        localStorage.setItem('score', score);
+        localStorage.setItem('clics', clics);
+        let time = `${formatTime(minutes)}:${formatTime(seconds)}`;
+        localStorage.setItem('time', time);
+        const leaders = JSON.parse(localStorage.getItem('leaders'));
+        if (leaders === null) {
+            localStorage.setItem('leaders', JSON.stringify([{ 'name': name, 'score': score, 'clics': clics, 'time': time }]));
+        } else {
+            leaders.push({ 'name': name, 'score': score, 'clics': clics, 'time': time });
+            leaders.sort((a, b) => {
+                if (a.score === b.score) {
+                    if (a.clics === b.clics) {
+                        if (a.time > b.time) {
+                            return 1;
+                        }
+                    }
+                }
+                return b.score - a.score;
+            });
+            if (leaders.length > 10) {
+                leaders.length = 10;
+            }
+            localStorage.setItem('leaders', JSON.stringify(leaders));
+        }
+        location.href = 'gameover.html';
+    }
+
     switch (difficulty) {
         case 'easy':
             easy();
@@ -78,6 +126,7 @@ function game() {
     function easy() {
         document.getElementById('difficulty').innerText = 'Сложность: легкая';
         const rings = [];
+        const rectangles = [];
         for (let i = 0; i < 6; i++) {
             rings.push(newRing(ringClasses[i]));
         }
@@ -86,7 +135,7 @@ function game() {
         for (let i = 0; i < rings.length; i++) {
             rings[i].addEventListener('click', () => {
                 if (ringClasses[order] === rings[i].classList[0]) {
-                    score += 10;
+                    score += 10 * difficultyCoefficient;
                     scoresBlock.innerText = `Очки: ${score}`;
                     clics++;
                     clicsBlock.innerText = `Клики: ${clics}`;
@@ -95,25 +144,27 @@ function game() {
                     let rectangle = document.createElement('div');
                     rectangle.classList.add(rectClasses[i]);
                     pyramidBlock.appendChild(rectangle);
-
+                    rectangles.push(rectangle);
                 } else {
                     alert('Неправильно!');
-                    if (score > 0) {
-                        score -= 10;
-                        scoresBlock.innerText = `Очки: ${score}`;
-                    }
+                    score -= 10;
+                    scoresBlock.innerText = `Очки: ${score}`;
                     clics++;
                     clicsBlock.innerText = `Клики: ${clics}`;
                 }
             })
         }
 
-        setInterval(() => {
+        let gameProcess = setInterval(() => {
             if (game) {
                 if (order === -1) {
                     game = false;
-                    gameover.style.display = 'flex';
-                    gameover.getElementsByTagName('p')[0].innerText = `Вы набрали ${score} очков за ${clics} кликов.`
+                    // gameover(gameoverEndings.won);
+                    // clearInterval(gameProcess);
+                    rectangles.forEach(rectangle => {
+                        rectangle.style.display = 'none';
+                    })
+                    medium();
                 }
             }
         }, 10)
@@ -121,6 +172,7 @@ function game() {
 
     function medium() {
         document.getElementById('difficulty').innerText = 'Сложность: средняя';
+        difficultyCoefficient = 2;
         const rings = [];
         const rectangles = [];
         const removedRings = [];
@@ -156,34 +208,36 @@ function game() {
                 pyramidBlock.appendChild(rectangle);
                 rectangles.push(rectangle);
                 if (ringClasses[order] === rings[i].classList[0]) {
-                    score += 15;
+                    score += 15 * difficultyCoefficient;
                     scoresBlock.innerText = `Очки: ${score}`;
                     clics++;
                     clicsBlock.innerText = `Клики: ${clics}`;
                     order--;
                 } else {
-                    if (score > 0) {
-                        score -= 15;
-                        scoresBlock.innerText = `Очки: ${score}`;
-                    }
+
+                    score -= 30 * difficultyCoefficient;
+                    scoresBlock.innerText = `Очки: ${score}`;
+
                     clics++;
                     clicsBlock.innerText = `Клики: ${clics}`;
                 }
             })
         }
 
-        setInterval(() => {
+        let gameProcess = setInterval(() => {
             if (game) {
                 if (order === -1) {
                     game = false;
-                    gameover.style.display = 'flex';
-                    gameover.getElementsByTagName('p')[0].innerText = `Вы набрали ${score} очков за ${clics} кликов.`
+                    rectangles.forEach(rectangle => {
+                        rectangle.style.display = 'none';
+                    })
+                    hard();
+                    clearInterval(gameProcess);
                 }
                 if (order !== -1 && rectangles.length === 6) {
                     game = false;
-                    gameover.style.display = 'flex';
-                    gameover.getElementsByTagName('h1')[0].innerText = 'Вы проиграли!';
-                    gameover.getElementsByTagName('p')[0].innerText = `Вы набрали ${score} очков за ${clics} кликов.`
+                    gameover(gameoverEndings.lose);
+                    clearInterval(gameProcess);
                 }
             }
         }, 10)
@@ -191,6 +245,7 @@ function game() {
 
     function hard() {
         document.getElementById('difficulty').innerText = 'Сложность: сложная';
+        difficultyCoefficient = 3;
         const rings = [];
         const rectangles = [];
         const removedRings = [];
@@ -227,16 +282,16 @@ function game() {
                 pyramidBlock.appendChild(rectangle);
                 rectangles.push(rectangle);
                 if (ringClasses[order] === rings[i].classList[0]) {
-                    score += 15;
+                    score += 15 * difficultyCoefficient;
                     scoresBlock.innerText = `Очки: ${score}`;
                     clics++;
                     clicsBlock.innerText = `Клики: ${clics}`;
                     order--;
                 } else {
-                    if (score > 0) {
-                        score -= 15;
-                        scoresBlock.innerText = `Очки: ${score}`;
-                    }
+
+                    score -= 30 * difficultyCoefficient;
+                    scoresBlock.innerText = `Очки: ${score}`;
+
                     clics++;
                     clicsBlock.innerText = `Клики: ${clics}`;
                 }
@@ -246,7 +301,7 @@ function game() {
 
         let disappear = setInterval(() => {
             rings[Math.floor(Math.random() * rings.length)].style.display = 'none';
-        }, getRandomInt(5000, 9000));
+        }, getRandomInt(2000, 4000));
         let appear = setInterval(() => {
             const random = Math.floor(Math.random() * rings.length);
             let isInRemovedRings = false;
@@ -259,28 +314,28 @@ function game() {
                 moveRing(rings[random]);
                 rings[random].style.display = 'block';
             }
-        }, getRandomInt(5000, 9000));
+        }, getRandomInt(1000, 5000));
         let gameProcess = setInterval(() => {
             if (game) {
                 if (order === -1) {
                     game = false;
-                    gameover.style.display = 'flex';
-                    gameover.getElementsByTagName('p')[0].innerText = `Вы набрали ${score} очков за ${clics} кликов.`
+                    gameover(gameoverEndings.won);
+                    clearInterval(disappear);
+                    clearInterval(appear);
+                    clearInterval(gameProcess);
                 }
                 if (order !== -1 && rectangles.length === 6) {
                     game = false;
-                    gameover.style.display = 'flex';
-                    gameover.getElementsByTagName('h1')[0].innerText = 'Вы проиграли!';
-                    gameover.getElementsByTagName('p')[0].innerText = `Вы набрали ${score} очков за ${clics} кликов.`
+                    gameover(gameoverEndings.lose);
+                    clearInterval(disappear);
+                    clearInterval(appear);
+                    clearInterval(gameProcess);
                 }
             }
         }, 10)
     }
 
-    restart.addEventListener('click', () => {
-        location.reload();
-    })
-
+    startTimer();
 }
 
 window.onload = () => {
