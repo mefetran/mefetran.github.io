@@ -34,9 +34,7 @@ function start() {
 
       rotate = Math.abs(rotate) % 360;
 
-      if (rotate > 0 + tolerance && rotate < 360 - tolerance) {
-        return false;
-      }
+      if (rotate > 0 + tolerance && rotate < 360 - tolerance) return;
 
       const { left: puzzleLeft, top: puzzleTop } =
         puzzle.getBoundingClientRect();
