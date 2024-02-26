@@ -277,6 +277,7 @@ body {
     position: absolute;
     top: -4em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 10;
 }
 
@@ -289,6 +290,7 @@ body {
     position: absolute;
     top: -6em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 9;
 }
 
@@ -301,6 +303,7 @@ body {
     position: absolute;
     top: -8em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 8;
 }
 
@@ -313,6 +316,7 @@ body {
     position: absolute;
     top: -10em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 7;
 }
 
@@ -325,6 +329,7 @@ body {
     position: absolute;
     top: -12em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 6;
 }
 
@@ -337,6 +342,7 @@ body {
     position: absolute;
     top: -14em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 5;
 }
 
@@ -349,6 +355,7 @@ body {
     position: absolute;
     top: -16em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 4;
 }
 
@@ -361,6 +368,7 @@ body {
     position: absolute;
     top: -18em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 3;
 }
 
@@ -373,6 +381,7 @@ body {
     position: absolute;
     top: -20em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 2;
 }
 
@@ -385,6 +394,7 @@ body {
     position: absolute;
     top: -22em;
     left: calc(random() * 50vw);
+    cursor: pointer;
     z-index: 1;
 }
 
